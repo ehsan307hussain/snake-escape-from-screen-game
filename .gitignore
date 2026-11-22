@@ -1,0 +1,31 @@
+# ESP-IDF generated files
+build/
+sdkconfig.old
+managed_components/
+
+# Local ESP-IDF configuration (keep sdkconfig.defaults if provided)
+sdkconfig
+
+# Python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Node dependencies and logs (if used)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.log
