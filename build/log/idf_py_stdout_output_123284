@@ -1,0 +1,783 @@
+Command: /home/ehsan/.espressif/tools/python/v6.1/venv/bin/python /home/ehsan/.espressif/v6.1/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /home/ehsan/projects/escaping_snake/build/escaping_snake.elf /home/ehsan/projects/escaping_snake/build/bootloader/bootloader.elf -m '/home/ehsan/.espressif/tools/python/v6.1/venv/bin/python' '/home/ehsan/.espressif/v6.1/esp-idf/tools/idf.py' '-p' '/dev/ttyUSB0'
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15824
+load:0x40080400,len:3988
+entry 0x40080644
+[0;32mI (27) boot: ESP-IDF v6.1 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Nov 16 2026 11:44:17[0m
+[0;32mI (28) boot: Multicore bootloader[0m
+[0;32mI (29) boot: chip revision: v3.1[0m
+[0;32mI (31) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (35) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (49) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (62) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (75) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0a4c8h ( 42184) map[0m
+[0;32mI (101) esp_image: segment 1: paddr=0001a4f0 vaddr=3ffb0000 size=02bd4h ( 11220) load[0m
+[0;32mI (106) esp_image: segment 2: paddr=0001d0cc vaddr=40080000 size=02f4ch ( 12108) load[0m
+[0;32mI (111) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=111e4h ( 70116) map[0m
+[0;32mI (137) esp_image: segment 4: paddr=0003120c vaddr=40082f4c size=088a0h ( 34976) load[0m
+[0;32mI (152) esp_image: segment 5: paddr=00039ab4 vaddr=50000000 size=00028h (    40) load[0m
+[0;32mI (158) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (158) boot: Disabling RNG early entropy source...[0m
+[0;32mI (170) cpu_start: Multicore app[0m
+[0;32mI (178) cpu_start: GPIO 3 and 1 are used as console UART I/O pins[0m
+[0;32mI (179) cpu_start: Pro cpu start user code[0m
+[0;32mI (179) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (181) app_init: Application information:[0m
+[0;32mI (184) app_init: Project name:     escaping_snake[0m
+[0;32mI (189) app_init: App version:      1[0m
+[0;32mI (192) app_init: Compile time:     Nov 16 2026 11:44:12[0m
+[0;32mI (197) app_init: ELF file SHA256:  6c7a8a735...[0m
+[0;32mI (202) app_init: ESP-IDF:          v6.1[0m
+[0;32mI (205) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (209) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (213) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (217) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (223) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (228) heap_init: At 3FFB36B8 len 0002C948 (178 KiB): DRAM[0m
+[0;32mI (234) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (239) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (244) heap_init: At 4008B7EC len 00014814 (82 KiB): IRAM[0m
+[0;33mW (251) spi_flash: Detected boya flash chip but using generic driver. For optimal functionality, enable `SPI_FLASH_SUPPORT_BOYA_CHIP` in menuconfig[0m
+[0;32mI (263) spi_flash: detected chip: generic[0m
+[0;32mI (266) spi_flash: flash io: dio[0m
+[0;33mW (269) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (283) main_task: Started on CPU0[0m
+[0;32mI (283) main_task: Calling app_main()[0m
+[0;32mI (283) SNAKE: Escaping Snake started[0m
+[0;32mI (693) SNAKE: IR=3654 movement=10 change=25[0m
+[0;32mI (1093) SNAKE: IR=3627 movement=31 change=1[0m
+[0;32mI (1493) SNAKE: IR=3626 movement=27 change=2[0m
+[0;32mI (1893) SNAKE: IR=3656 movement=1 change=27[0m
+[0;32mI (2293) SNAKE: IR=3634 movement=2 change=34[0m
+[0;32mI (2693) SNAKE: IR=3630 movement=7 change=32[0m
+[0;32mI (3093) SNAKE: IR=3652 movement=2 change=4[0m
+[0;32mI (3493) SNAKE: IR=3627 movement=8 change=26[0m
+[0;32mI (3893) SNAKE: IR=3637 movement=5 change=12[0m
+[0;32mI (4293) SNAKE: IR=3638 movement=8 change=13[0m
+[0;32mI (4693) SNAKE: IR=3635 movement=3 change=10[0m
+[0;32mI (5093) SNAKE: IR=3640 movement=43 change=10[0m
+[0;32mI (5413) SNAKE: HAND MOVEMENT DETECTED: 475[0m
+[0;32mI (5413) SNAKE: Snake leaving laptop[0m
+[0;32mI (7973) SNAKE: Snake reached LED end[0m
+[0;32mI (8053) SNAKE: IR=3652 movement=7 change=18[0m
+[0;32mI (8413) SNAKE: Sensor armed[0m
+[0;32mI (8453) SNAKE: IR=3632 movement=4 change=14[0m
+[0;32mI (8853) SNAKE: IR=3634 movement=2 change=6[0m
+[0;32mI (9253) SNAKE: IR=3645 movement=12 change=13[0m
+[0;32mI (9653) SNAKE: IR=3613 movement=30 change=13[0m
+[0;32mI (10053) SNAKE: IR=3622 movement=20 change=8[0m
+[0;32mI (10453) SNAKE: IR=3629 movement=14 change=4[0m
+[0;32mI (10853) SNAKE: IR=3632 movement=0 change=6[0m
+[0;32mI (11253) SNAKE: IR=3640 movement=8 change=21[0m
+[0;32mI (11333) SNAKE: HAND MOVEMENT DETECTED: 446[0m
+[0;32mI (11333) SNAKE: Snake returning to laptop[0m
+[0;32mI (14373) SNAKE: Snake reached laptop[0m
+[0;32mI (14693) SNAKE: IR=2183 movement=1007 change=1[0m
+[0;32mI (14813) SNAKE: Sensor armed[0m
+[0;32mI (15093) SNAKE: IR=2184 movement=3 change=3[0m
+[0;32mI (15493) SNAKE: IR=2185 movement=0 change=2[0m
+[0;32mI (15893) SNAKE: IR=2184 movement=5 change=5[0m
+[0;32mI (16293) SNAKE: IR=2205 movement=28 change=3[0m
+[0;32mI (16693) SNAKE: IR=2243 movement=41 change=12[0m
+[0;32mI (16893) SNAKE: HAND MOVEMENT DETECTED: 279[0m
+[0;32mI (16893) SNAKE: Snake leaving laptop[0m
+[0;32mI (19453) SNAKE: Snake reached LED end[0m
+[0;32mI (19653) SNAKE: IR=3486 movement=1180 change=10[0m
+[0;32mI (19893) SNAKE: Sensor armed[0m
+[0;32mI (20053) SNAKE: IR=3493 movement=4 change=1[0m
+[0;32mI (20453) SNAKE: IR=3493 movement=5 change=19[0m
+[0;32mI (20653) SNAKE: HAND MOVEMENT DETECTED: 419[0m
+[0;32mI (20653) SNAKE: Snake returning to laptop[0m
+[0;32mI (23693) SNAKE: Snake reached laptop[0m
+[0;32mI (23893) SNAKE: IR=2639 movement=794 change=9[0m
+[0;32mI (24133) SNAKE: Sensor armed[0m
+[0;32mI (24293) SNAKE: IR=2644 movement=11 change=14[0m
+[0;32mI (24493) SNAKE: HAND MOVEMENT DETECTED: 491[0m
+[0;32mI (24493) SNAKE: Snake leaving laptop[0m
+[0;32mI (27053) SNAKE: Snake reached LED end[0m
+[0;32mI (27253) SNAKE: IR=2857 movement=252 change=8[0m
+[0;32mI (27493) SNAKE: Sensor armed[0m
+[0;32mI (27533) SNAKE: HAND MOVEMENT DETECTED: 766[0m
+[0;32mI (27533) SNAKE: Snake returning to laptop[0m
+[0;32mI (30573) SNAKE: Snake reached laptop[0m
+[0;32mI (30693) SNAKE: IR=3312 movement=451 change=120[0m
+[0;32mI (31093) SNAKE: IR=3301 movement=552 change=28[0m
+[0;32mI (31373) SNAKE: Sensor armed[0m
+[0;32mI (31493) SNAKE: IR=3260 movement=37 change=31[0m
+[0;32mI (31893) SNAKE: IR=3321 movement=88 change=17[0m
+[0;32mI (32173) SNAKE: HAND MOVEMENT DETECTED: 264[0m
+[0;32mI (32173) SNAKE: Snake leaving laptop[0m
+[0;32mI (34733) SNAKE: Snake reached LED end[0m
+[0;32mI (34853) SNAKE: IR=2618 movement=730 change=4[0m
+[0;32mI (35173) SNAKE: Sensor armed[0m
+[0;32mI (35253) SNAKE: IR=2625 movement=0 change=15[0m
+[0;32mI (35653) SNAKE: IR=2623 movement=3 change=11[0m
+[0;32mI (36053) SNAKE: IR=2615 movement=5 change=3[0m
+[0;32mI (36453) SNAKE: IR=2617 movement=1 change=7[0m
+[0;32mI (36853) SNAKE: IR=2621 movement=0 change=10[0m
+[0;32mI (37253) SNAKE: IR=2622 movement=1 change=0[0m
+[0;32mI (37533) SNAKE: HAND MOVEMENT DETECTED: 324[0m
+[0;32mI (37533) SNAKE: Snake returning to laptop[0m
+[0;32mI (40573) SNAKE: Snake reached laptop[0m
+[0;32mI (40693) SNAKE: IR=3455 movement=833 change=30[0m
+[0;32mI (41013) SNAKE: Sensor armed[0m
+[0;32mI (41093) SNAKE: IR=3420 movement=37 change=31[0m
+[0;32mI (41493) SNAKE: IR=3458 movement=1 change=10[0m
+[0;32mI (41893) SNAKE: IR=3437 movement=23 change=21[0m
+[0;32mI (42293) SNAKE: IR=3367 movement=43 change=16[0m
+[0;32mI (42413) SNAKE: HAND MOVEMENT DETECTED: 636[0m
+[0;32mI (42413) SNAKE: Snake leaving laptop[0m
+[0;32mI (44973) SNAKE: Snake reached LED end[0m
+[0;32mI (45253) SNAKE: IR=3007 movement=333 change=26[0m
+[0;32mI (45413) SNAKE: Sensor armed[0m
+[0;32mI (45653) SNAKE: IR=2939 movement=44 change=10[0m
+[0;32mI (46053) SNAKE: IR=2891 movement=26 change=8[0m
+[0;32mI (46453) SNAKE: IR=2877 movement=14 change=6[0m
+[0;32mI (46853) SNAKE: IR=2852 movement=28 change=5[0m
+[0;32mI (47253) SNAKE: IR=2851 movement=0 change=1[0m
+[0;32mI (47653) SNAKE: IR=2830 movement=13 change=6[0m
+[0;32mI (48053) SNAKE: IR=2546 movement=282 change=188[0m
+[0;32mI (48053) SNAKE: HAND MOVEMENT DETECTED: 282[0m
+[0;32mI (48053) SNAKE: Snake returning to laptop[0m
+[0;32mI (51093) SNAKE: Snake reached laptop[0m
+[0;32mI (51493) SNAKE: IR=3390 movement=3 change=4[0m
+[0;32mI (51533) SNAKE: Sensor armed[0m
+[0;32mI (51893) SNAKE: IR=3382 movement=9 change=14[0m
+[0;32mI (52293) SNAKE: IR=3385 movement=0 change=13[0m
+[0;32mI (52693) SNAKE: IR=3395 movement=2 change=12[0m
+[0;32mI (53093) SNAKE: IR=3405 movement=13 change=9[0m
+[0;32mI (53493) SNAKE: IR=3382 movement=14 change=15[0m
+[0;32mI (53893) SNAKE: IR=3380 movement=1 change=11[0m
+[0;32mI (54293) SNAKE: IR=3386 movement=1 change=1[0m
+[0;32mI (54693) SNAKE: IR=3393 movement=8 change=7[0m
+[0;32mI (55093) SNAKE: IR=3400 movement=4 change=12[0m
+[0;32mI (55493) SNAKE: IR=3406 movement=12 change=14[0m
+[0;32mI (55893) SNAKE: IR=3411 movement=8 change=20[0m
+[0;32mI (56293) SNAKE: IR=3391 movement=6 change=3[0m
+[0;32mI (56693) SNAKE: IR=3389 movement=1 change=11[0m
+[0;32mI (57093) SNAKE: IR=3384 movement=9 change=2[0m
+[0;32mI (57493) SNAKE: IR=3389 movement=2 change=4[0m
+[0;32mI (57893) SNAKE: IR=3387 movement=1 change=11[0m
+[0;32mI (58293) SNAKE: IR=3386 movement=6 change=10[0m
+[0;32mI (58693) SNAKE: IR=3386 movement=4 change=19[0m
+[0;32mI (59093) SNAKE: IR=3402 movement=8 change=8[0m
+[0;32mI (59493) SNAKE: IR=3395 movement=4 change=4[0m
+[0;32mI (59893) SNAKE: IR=3381 movement=17 change=9[0m
+[0;32mI (60293) SNAKE: IR=3384 movement=7 change=6[0m
+[0;32mI (60693) SNAKE: IR=3390 movement=14 change=0[0m
+[0;32mI (61093) SNAKE: IR=3398 movement=2 change=13[0m
+[0;32mI (61493) SNAKE: IR=3460 movement=67 change=69[0m
+[0;32mI (61893) SNAKE: IR=3400 movement=8 change=13[0m
+[0;32mI (62293) SNAKE: IR=3399 movement=4 change=3[0m
+[0;32mI (62693) SNAKE: IR=3395 movement=5 change=4[0m
+[0;32mI (63093) SNAKE: IR=3386 movement=12 change=7[0m
+[0;32mI (63493) SNAKE: IR=3391 movement=5 change=9[0m
+[0;32mI (63893) SNAKE: IR=3387 movement=10 change=2[0m
+[0;32mI (64293) SNAKE: IR=3393 movement=3 change=12[0m
+[0;32mI (64693) SNAKE: IR=3389 movement=3 change=6[0m
+[0;32mI (65093) SNAKE: IR=3386 movement=1 change=17[0m
+[0;32mI (65493) SNAKE: IR=3401 movement=5 change=1[0m
+[0;32mI (65893) SNAKE: IR=3401 movement=0 change=8[0m
+[0;32mI (66293) SNAKE: IR=3380 movement=11 change=6[0m
+[0;32mI (66693) SNAKE: IR=3378 movement=0 change=12[0m
+[0;32mI (67093) SNAKE: IR=3386 movement=4 change=7[0m
+[0;32mI (67493) SNAKE: IR=3397 movement=7 change=9[0m
+[0;32mI (67893) SNAKE: IR=3416 movement=19 change=32[0m
+[0;32mI (68293) SNAKE: IR=3405 movement=11 change=19[0m
+[0;32mI (68693) SNAKE: IR=3396 movement=9 change=1[0m
+[0;32mI (69093) SNAKE: IR=3394 movement=5 change=5[0m
+����������������������������������������������������������������t=8 change=2
+[0;32mI (69893) SNAKE: IR=3393 movement=8 change=10[0m
+[0;32mI (70293) SNAKE: IR=3386 movement=4 change=3[0m
+[0;32mI (70693) SNAKE: IR=3389 movement=0 change=2[0m
+[0;32mI (71093) SNAKE: IR=3393 movement=6 change=6[0m
+[0;32mI (71493) SNAKE: IR=3390 movement=4 change=13[0m
+[0;32mI (71893) SNAKE: IR=3396 movement=9 change=5[0m
+[0;32mI (72293) SNAKE: IR=3395 movement=2 change=2[0m
+[0;32mI (72693) SNAKE: IR=3374 movement=7 change=9[0m
+[0;32mI (73093) SNAKE: IR=3377 movement=0 change=11[0m
+[0;32mI (73493) SNAKE: IR=3396 movement=5 change=11[0m
+[0;32mI (73893) SNAKE: IR=3393 movement=9 change=8[0m
+[0;32mI (74293) SNAKE: IR=3395 movement=2 change=5[0m
+[0;32mI (74693) SNAKE: IR=3447 movement=54 change=64[0m
+[0;32mI (75093) SNAKE: IR=3400 movement=4 change=2[0m
+[0;32mI (75493) SNAKE: IR=3391 movement=4 change=2[0m
+[0;32mI (75893) SNAKE: IR=3389 movement=5 change=6[0m
+[0;32mI (76293) SNAKE: IR=3389 movement=4 change=11[0m
+[0;32mI (76693) SNAKE: IR=3386 movement=0 change=3[0m
+[0;32mI (77093) SNAKE: IR=3395 movement=10 change=8[0m
+[0;32mI (77493) SNAKE: IR=3383 movement=2 change=9[0m
+[0;32mI (77893) SNAKE: IR=3385 movement=3 change=16[0m
+[0;32mI (78293) SNAKE: IR=3391 movement=2 change=7[0m
+[0;32mI (78693) SNAKE: IR=3382 movement=11 change=10[0m
+[0;32mI (79093) SNAKE: IR=3385 movement=2 change=10[0m
+[0;32mI (79493) SNAKE: IR=3384 movement=4 change=2[0m
+[0;32mI (79893) SNAKE: IR=3386 movement=7 change=2[0m
+[0;32mI (80293) SNAKE: IR=3391 movement=2 change=6[0m
+[0;32mI (80693) SNAKE: IR=3406 movement=8 change=22[0m
+[0;32mI (81093) SNAKE: IR=3407 movement=2 change=14[0m
+[0;32mI (81493) SNAKE: IR=3401 movement=9 change=1[0m
+[0;32mI (81893) SNAKE: IR=3395 movement=5 change=26[0m
+[0;32mI (82293) SNAKE: IR=3385 movement=9 change=8[0m
+[0;32mI (82693) SNAKE: IR=3389 movement=2 change=11[0m
+[0;32mI (83093) SNAKE: IR=3382 movement=9 change=13[0m
+[0;32mI (83493) SNAKE: IR=3391 movement=2 change=13[0m
+[0;32mI (83893) SNAKE: IR=3387 movement=1 change=10[0m
+[0;32mI (84293) SNAKE: IR=3389 movement=1 change=22[0m
+[0;32mI (84693) SNAKE: IR=3405 movement=7 change=5[0m
+[0;32mI (85093) SNAKE: IR=3384 movement=8 change=16[0m
+[0;32mI (85493) SNAKE: IR=3374 movement=9 change=12[0m
+[0;32mI (85893) SNAKE: IR=3389 movement=5 change=2[0m
+[0;32mI (86293) SNAKE: IR=3394 movement=11 change=1[0m
+[0;32mI (86693) SNAKE: IR=3398 movement=1 change=12[0m
+[0;32mI (87093) SNAKE: IR=3401 movement=10 change=16[0m
+[0;32mI (87493) SNAKE: IR=3415 movement=13 change=18[0m
+[0;32mI (87893) SNAKE: IR=3398 movement=1 change=7[0m
+[0;32mI (88293) SNAKE: IR=3392 movement=6 change=18[0m
+[0;32mI (88693) SNAKE: IR=3398 movement=8 change=16[0m
+[0;32mI (89093) SNAKE: IR=3387 movement=4 change=1[0m
+[0;32mI (89493) SNAKE: IR=3387 movement=3 change=11[0m
+[0;32mI (89893) SNAKE: IR=3392 movement=7 change=2[0m
+[0;32mI (90293) SNAKE: IR=3388 movement=4 change=12[0m
+[0;32mI (90693) SNAKE: IR=3393 movement=1 change=20[0m
+[0;32mI (91093) SNAKE: IR=3395 movement=6 change=6[0m
+[0;32mI (91493) SNAKE: IR=3382 movement=12 change=16[0m
+[0;32mI (91893) SNAKE: IR=3382 movement=2 change=2[0m
+[0;32mI (92293) SNAKE: IR=3392 movement=16 change=5[0m
+[0;32mI (92693) SNAKE: IR=3390 movement=3 change=1[0m
+[0;32mI (93093) SNAKE: IR=3396 movement=4 change=6[0m
+[0;32mI (93493) SNAKE: IR=3404 movement=10 change=12[0m
+[0;32mI (93893) SNAKE: IR=3405 movement=5 change=10[0m
+[0;32mI (94293) SNAKE: IR=3398 movement=0 change=0[0m
+[0;32mI (94693) SNAKE: IR=3394 movement=0 change=17[0m
+[0;32mI (95093) SNAKE: IR=3390 movement=2 change=9[0m
+[0;32mI (95493) SNAKE: IR=3388 movement=4 change=2[0m
+[0;32mI (95893) SNAKE: IR=3385 movement=3 change=8[0m
+[0;32mI (96293) SNAKE: IR=3386 movement=1 change=11[0m
+[0;32mI (96693) SNAKE: IR=3383 movement=5 change=18[0m
+[0;32mI (97093) SNAKE: IR=3395 movement=11 change=3[0m
+[0;32mI (97493) SNAKE: IR=3400 movement=2 change=0[0m
+[0;32mI (97893) SNAKE: IR=3379 movement=16 change=11[0m
+[0;32mI (98293) SNAKE: IR=3382 movement=9 change=1[0m
+[0;32mI (98693) SNAKE: IR=3391 movement=9 change=3[0m
+[0;32mI (99093) SNAKE: IR=3400 movement=1 change=8[0m
+[0;32mI (99493) SNAKE: IR=3404 movement=6 change=15[0m
+[0;32mI (99893) SNAKE: IR=3404 movement=2 change=16[0m
+[0;32mI (100293) SNAKE: IR=3398 movement=9 change=1[0m
+[0;32mI (100693) SNAKE: IR=3390 movement=8 change=5[0m
+[0;32mI (101093) SNAKE: IR=3389 movement=2 change=19[0m
+[0;32mI (101493) SNAKE: IR=3387 movement=1 change=2[0m
+[0;32mI (101893) SNAKE: IR=3387 movement=10 change=1[0m
+[0;32mI (102293) SNAKE: IR=3389 movement=3 change=5[0m
+[0;32mI (102693) SNAKE: IR=3386 movement=2 change=19[0m
+[0;32mI (103093) SNAKE: IR=3384 movement=4 change=22[0m
+[0;32mI (103493) SNAKE: IR=3428 movement=38 change=28[0m
+[0;32mI (103893) SNAKE: IR=3394 movement=9 change=4[0m
+[0;32mI (104293) SNAKE: IR=3381 movement=7 change=5[0m
+[0;32mI (104693) SNAKE: IR=3384 movement=0 change=4[0m
+[0;32mI (105093) SNAKE: IR=3396 movement=13 change=4[0m
+[0;32mI (105493) SNAKE: IR=3402 movement=1 change=14[0m
+[0;32mI (105893) SNAKE: IR=3401 movement=3 change=19[0m
+[0;32mI (106293) SNAKE: IR=3406 movement=9 change=22[0m
+[0;32mI (106693) SNAKE: IR=3401 movement=3 change=2[0m
+[0;32mI (107093) SNAKE: IR=3391 movement=3 change=11[0m
+[0;32mI (107493) SNAKE: IR=3393 movement=2 change=18[0m
+[0;32mI (107893) SNAKE: IR=3395 movement=7 change=3[0m
+[0;32mI (108293) SNAKE: IR=3390 movement=6 change=1[0m
+[0;32mI (108693) SNAKE: IR=3386 movement=3 change=15[0m
+[0;32mI (109093) SNAKE: IR=3382 movement=3 change=22[0m
+[0;32mI (109493) SNAKE: IR=3386 movement=3 change=13[0m
+[0;32mI (109893) SNAKE: IR=3399 movement=19 change=6[0m
+[0;32mI (110293) SNAKE: IR=3382 movement=15 change=8[0m
+[0;32mI (110693) SNAKE: IR=3389 movement=15 change=2[0m
+[0;32mI (111093) SNAKE: IR=3401 movement=19 change=19[0m
+[0;32mI (111493) SNAKE: IR=3397 movement=5 change=4[0m
+[0;32mI (111893) SNAKE: IR=3398 movement=13 change=16[0m
+[0;32mI (112293) SNAKE: IR=3408 movement=7 change=19[0m
+[0;32mI (112693) SNAKE: IR=3433 movement=36 change=52[0m
+[0;32mI (113093) SNAKE: IR=3391 movement=14 change=9[0m
+[0;32mI (113493) SNAKE: IR=3389 movement=37 change=10[0m
+[0;32mI (113893) SNAKE: IR=3396 movement=8 change=10[0m
+[0;32mI (114293) SNAKE: IR=3421 movement=29 change=28[0m
+[0;32mI (114693) SNAKE: IR=3393 movement=4 change=3[0m
+[0;32mI (115093) SNAKE: IR=3387 movement=5 change=15[0m
+[0;32mI (115493) SNAKE: IR=3379 movement=2 change=23[0m
+[0;32mI (115893) SNAKE: IR=3419 movement=37 change=20[0m
+[0;32mI (116293) SNAKE: IR=3398 movement=4 change=2[0m
+[0;32mI (116693) SNAKE: IR=3416 movement=5 change=24[0m
+[0;32mI (117093) SNAKE: IR=3381 movement=2 change=3[0m
+[0;32mI (117493) SNAKE: IR=3396 movement=12 change=2[0m
+[0;32mI (117893) SNAKE: IR=3396 movement=5 change=5[0m
+[0;32mI (118293) SNAKE: IR=3432 movement=3 change=48[0m
+[0;32mI (118693) SNAKE: IR=3403 movement=8 change=12[0m
+[0;32mI (119093) SNAKE: IR=3394 movement=6 change=3[0m
+[0;32mI (119493) SNAKE: IR=3401 movement=30 change=4[0m
+[0;32mI (119893) SNAKE: IR=3389 movement=3 change=6[0m
+[0;32mI (120293) SNAKE: IR=3392 movement=5 change=31[0m
+[0;32mI (120693) SNAKE: IR=3393 movement=6 change=0[0m
+[0;32mI (121093) SNAKE: IR=3387 movement=2 change=9[0m
+[0;32mI (121493) SNAKE: IR=3415 movement=35 change=12[0m
+[0;32mI (121893) SNAKE: IR=3386 movement=2 change=16[0m
+[0;32mI (122293) SNAKE: IR=3397 movement=12 change=1[0m
+[0;32mI (122693) SNAKE: IR=3395 movement=8 change=3[0m
+[0;32mI (123093) SNAKE: IR=3377 movement=17 change=11[0m
+[0;32mI (123493) SNAKE: IR=3396 movement=13 change=11[0m
+[0;32mI (123893) SNAKE: IR=3398 movement=1 change=15[0m
+[0;32mI (124293) SNAKE: IR=3397 movement=32 change=12[0m
+[0;32mI (124693) SNAKE: IR=3408 movement=1 change=22[0m
+[0;32mI (125093) SNAKE: IR=3401 movement=30 change=19[0m
+[0;32mI (125493) SNAKE: IR=3393 movement=7 change=16[0m
+[0;32mI (125893) SNAKE: IR=3389 movement=11 change=13[0m
+[0;32mI (126293) SNAKE: IR=3386 movement=11 change=1[0m
+[0;32mI (126693) SNAKE: IR=3389 movement=5 change=9[0m
+[0;32mI (127093) SNAKE: IR=3388 movement=35 change=45[0m
+[0;32mI (127493) SNAKE: IR=3386 movement=8 change=43[0m
+[0;32mI (127893) SNAKE: IR=3381 movement=37 change=52[0m
+[0;32mI (128293) SNAKE: IR=3382 movement=1 change=19[0m
+[0;32mI (128693) SNAKE: IR=3399 movement=16 change=27[0m
+[0;32mI (129093) SNAKE: IR=3387 movement=6 change=10[0m
+[0;32mI (129493) SNAKE: IR=3417 movement=29 change=2[0m
+[0;32mI (129893) SNAKE: IR=3400 movement=8 change=15[0m
+[0;32mI (130293) SNAKE: IR=3395 movement=4 change=11[0m
+[0;32mI (130693) SNAKE: IR=3403 movement=6 change=10[0m
+[0;32mI (131093) SNAKE: IR=3403 movement=4 change=20[0m
+[0;32mI (131493) SNAKE: IR=3430 movement=33 change=46[0m
+[0;32mI (131893) SNAKE: IR=3404 movement=11 change=27[0m
+[0;32mI (132293) SNAKE: IR=3394 movement=32 change=37[0m
+[0;32mI (132693) SNAKE: IR=3421 movement=2 change=36[0m
+[0;32mI (133093) SNAKE: IR=3384 movement=39 change=11[0m
+[0;32mI (133493) SNAKE: IR=3419 movement=27 change=10[0m
+[0;32mI (133893) SNAKE: IR=3419 movement=4 change=13[0m
+[0;32mI (134293) SNAKE: IR=3389 movement=6 change=10[0m
+[0;32mI (134693) SNAKE: IR=3383 movement=33 change=15[0m
+[0;32mI (135093) SNAKE: IR=3432 movement=17 change=37[0m
+[0;32mI (135493) SNAKE: IR=3430 movement=36 change=3[0m
+[0;32mI (135893) SNAKE: IR=3392 movement=12 change=7[0m
+[0;32mI (136293) SNAKE: IR=3429 movement=36 change=0[0m
+[0;32mI (136693) SNAKE: IR=3431 movement=37 change=5[0m
+[0;32mI (137093) SNAKE: IR=3438 movement=22 change=58[0m
+[0;32mI (137493) SNAKE: IR=3424 movement=22 change=15[0m
+[0;32mI (137893) SNAKE: IR=3394 movement=38 change=12[0m
+[0;32mI (138293) SNAKE: IR=3425 movement=27 change=28[0m
+[0;32mI (138693) SNAKE: IR=3387 movement=37 change=5[0m
+[0;32mI (139093) SNAKE: IR=3395 movement=28 change=3[0m
+[0;32mI (139493) SNAKE: IR=3387 movement=2 change=10[0m
+[0;32mI (139893) SNAKE: IR=3386 movement=5 change=47[0m
+[0;32mI (140293) SNAKE: IR=3415 movement=20 change=22[0m
+[0;32mI (140693) SNAKE: IR=3385 movement=33 change=43[0m
+[0;32mI (141093) SNAKE: IR=3419 movement=8 change=8[0m
+[0;32mI (141493) SNAKE: IR=3430 movement=13 change=29[0m
+[0;32mI (141893) SNAKE: IR=3390 movement=14 change=6[0m
+����������������������������������������������������������������nt=1 change=33
+[0;32mI (142693) SNAKE: IR=3430 movement=38 change=13[0m
+[0;32mI (143093) SNAKE: IR=3426 movement=0 change=38[0m
+[0;32mI (143493) SNAKE: IR=3434 movement=1 change=20[0m
+[0;32mI (143893) SNAKE: IR=3397 movement=38 change=17[0m
+[0;32mI (144293) SNAKE: IR=3426 movement=6 change=45[0m
+[0;32mI (144693) SNAKE: IR=3397 movement=32 change=30[0m
+[0;32mI (145093) SNAKE: IR=3428 movement=2 change=42[0m
+[0;32mI (145493) SNAKE: IR=3418 movement=5 change=9[0m
+[0;32mI (145893) SNAKE: IR=3417 movement=27 change=9[0m
+[0;32mI (146293) SNAKE: IR=3387 movement=26 change=46[0m
+[0;32mI (146693) SNAKE: IR=3418 movement=32 change=18[0m
+[0;32mI (147093) SNAKE: IR=3387 movement=4 change=10[0m
+[0;32mI (147493) SNAKE: IR=3387 movement=19 change=41[0m
+[0;32mI (147893) SNAKE: IR=3436 movement=39 change=6[0m
+[0;32mI (148293) SNAKE: IR=3396 movement=32 change=7[0m
+[0;32mI (148693) SNAKE: IR=3428 movement=32 change=38[0m
+[0;32mI (149093) SNAKE: IR=3431 movement=5 change=13[0m
+[0;32mI (149493) SNAKE: IR=3437 movement=11 change=52[0m
+[0;32mI (149893) SNAKE: IR=3424 movement=9 change=6[0m
+[0;32mI (150293) SNAKE: IR=3420 movement=8 change=38[0m
+[0;32mI (150693) SNAKE: IR=3426 movement=5 change=14[0m
+[0;32mI (151093) SNAKE: IR=3428 movement=22 change=9[0m
+[0;32mI (151493) SNAKE: IR=3386 movement=6 change=2[0m
+[0;32mI (151893) SNAKE: IR=3414 movement=30 change=17[0m
+[0;32mI (152293) SNAKE: IR=3415 movement=27 change=11[0m
+[0;32mI (152693) SNAKE: IR=3411 movement=18 change=22[0m
+[0;32mI (153093) SNAKE: IR=3377 movement=41 change=44[0m
+[0;32mI (153493) SNAKE: IR=3415 movement=2 change=0[0m
+[0;32mI (153893) SNAKE: IR=3433 movement=19 change=36[0m
+[0;32mI (154293) SNAKE: IR=3427 movement=4 change=1[0m
+[0;32mI (154693) SNAKE: IR=3428 movement=5 change=4[0m
+[0;32mI (155093) SNAKE: IR=3426 movement=2 change=48[0m
+[0;32mI (155493) SNAKE: IR=3432 movement=1 change=10[0m
+[0;32mI (155893) SNAKE: IR=3431 movement=3 change=20[0m
+[0;32mI (156293) SNAKE: IR=3426 movement=29 change=14[0m
+[0;32mI (156693) SNAKE: IR=3417 movement=25 change=5[0m
+[0;32mI (157093) SNAKE: IR=3404 movement=15 change=29[0m
+[0;32mI (157493) SNAKE: IR=3429 movement=6 change=1[0m
+[0;32mI (157893) SNAKE: IR=3416 movement=9 change=16[0m
+[0;32mI (158293) SNAKE: IR=3413 movement=27 change=17[0m
+[0;32mI (158693) SNAKE: IR=3418 movement=39 change=3[0m
+[0;32mI (159093) SNAKE: IR=3408 movement=4 change=18[0m
+[0;32mI (159493) SNAKE: IR=3417 movement=7 change=5[0m
+[0;32mI (159893) SNAKE: IR=3386 movement=28 change=4[0m
+[0;32mI (160293) SNAKE: IR=3435 movement=41 change=8[0m
+[0;32mI (160693) SNAKE: IR=3429 movement=2 change=4[0m
+[0;32mI (161093) SNAKE: IR=3431 movement=7 change=15[0m
+[0;32mI (161493) SNAKE: IR=3433 movement=2 change=20[0m
+[0;32mI (161893) SNAKE: IR=3422 movement=19 change=11[0m
+[0;32mI (162293) SNAKE: IR=3392 movement=37 change=23[0m
+[0;32mI (162693) SNAKE: IR=3418 movement=9 change=3[0m
+[0;32mI (163093) SNAKE: IR=3423 movement=3 change=32[0m
+[0;32mI (163493) SNAKE: IR=3401 movement=23 change=33[0m
+[0;32mI (163893) SNAKE: IR=3425 movement=5 change=6[0m
+[0;32mI (164293) SNAKE: IR=3416 movement=7 change=21[0m
+[0;32mI (164693) SNAKE: IR=3414 movement=1 change=16[0m
+[0;32mI (165093) SNAKE: IR=3417 movement=4 change=13[0m
+[0;32mI (165493) SNAKE: IR=3407 movement=6 change=8[0m
+[0;32mI (165893) SNAKE: IR=3385 movement=28 change=32[0m
+[0;32mI (166293) SNAKE: IR=3433 movement=10 change=8[0m
+[0;32mI (166693) SNAKE: IR=3428 movement=0 change=35[0m
+[0;32mI (167093) SNAKE: IR=3431 movement=32 change=4[0m
+[0;32mI (167493) SNAKE: IR=3432 movement=10 change=17[0m
+[0;32mI (167893) SNAKE: IR=3426 movement=24 change=47[0m
+[0;32mI (168293) SNAKE: IR=3419 movement=7 change=2[0m
+[0;32mI (168693) SNAKE: IR=3421 movement=4 change=1[0m
+[0;32mI (169093) SNAKE: IR=3431 movement=1 change=13[0m
+[0;32mI (169493) SNAKE: IR=3416 movement=5 change=7[0m
+[0;32mI (169893) SNAKE: IR=3425 movement=6 change=9[0m
+[0;32mI (170293) SNAKE: IR=3415 movement=11 change=5[0m
+[0;32mI (170693) SNAKE: IR=3422 movement=7 change=13[0m
+[0;32mI (171093) SNAKE: IR=3418 movement=12 change=15[0m
+[0;32mI (171493) SNAKE: IR=3404 movement=11 change=16[0m
+[0;32mI (171893) SNAKE: IR=3415 movement=37 change=12[0m
+[0;32mI (172293) SNAKE: IR=3425 movement=43 change=0[0m
+[0;32mI (172693) SNAKE: IR=3429 movement=1 change=11[0m
+[0;32mI (173093) SNAKE: IR=3433 movement=4 change=3[0m
+[0;32mI (173493) SNAKE: IR=3403 movement=25 change=15[0m
+[0;32mI (173893) SNAKE: IR=3426 movement=5 change=9[0m
+[0;32mI (174293) SNAKE: IR=3414 movement=26 change=4[0m
+[0;32mI (174693) SNAKE: IR=3423 movement=1 change=13[0m
+[0;32mI (175093) SNAKE: IR=3420 movement=1 change=3[0m
+[0;32mI (175493) SNAKE: IR=3423 movement=2 change=5[0m
+[0;32mI (175893) SNAKE: IR=3428 movement=3 change=3[0m
+[0;32mI (176293) SNAKE: IR=3429 movement=7 change=1[0m
+[0;32mI (176693) SNAKE: IR=3411 movement=20 change=27[0m
+[0;32mI (177093) SNAKE: IR=3409 movement=6 change=17[0m
+[0;32mI (177493) SNAKE: IR=3412 movement=4 change=24[0m
+[0;32mI (177893) SNAKE: IR=3417 movement=8 change=34[0m
+[0;32mI (178293) SNAKE: IR=3421 movement=11 change=8[0m
+[0;32mI (178693) SNAKE: IR=3428 movement=7 change=12[0m
+[0;32mI (179093) SNAKE: IR=3439 movement=5 change=11[0m
+[0;32mI (179493) SNAKE: IR=3431 movement=0 change=2[0m
+[0;32mI (179893) SNAKE: IR=3438 movement=9 change=25[0m
+[0;32mI (180293) SNAKE: IR=3421 movement=12 change=9[0m
+[0;32mI (180693) SNAKE: IR=3423 movement=2 change=17[0m
+[0;32mI (181093) SNAKE: IR=3419 movement=6 change=4[0m
+[0;32mI (181493) SNAKE: IR=3415 movement=5 change=8[0m
+[0;32mI (181893) SNAKE: IR=3423 movement=3 change=7[0m
+[0;32mI (182293) SNAKE: IR=3427 movement=13 change=15[0m
+[0;32mI (182693) SNAKE: IR=3422 movement=3 change=0[0m
+[0;32mI (183093) SNAKE: IR=3412 movement=21 change=22[0m
+[0;32mI (183493) SNAKE: IR=3406 movement=9 change=19[0m
+[0;32mI (183893) SNAKE: IR=3378 movement=27 change=50[0m
+[0;32mI (184293) SNAKE: IR=3429 movement=16 change=8[0m
+[0;32mI (184693) SNAKE: IR=3418 movement=7 change=7[0m
+[0;32mI (185093) SNAKE: IR=3434 movement=9 change=12[0m
+[0;32mI (185493) SNAKE: IR=3429 movement=4 change=3[0m
+[0;32mI (185893) SNAKE: IR=3432 movement=1 change=5[0m
+[0;32mI (186293) SNAKE: IR=3423 movement=6 change=14[0m
+[0;32mI (186693) SNAKE: IR=3420 movement=5 change=16[0m
+[0;32mI (187093) SNAKE: IR=3420 movement=4 change=8[0m
+[0;32mI (187493) SNAKE: IR=3420 movement=1 change=3[0m
+[0;32mI (187893) SNAKE: IR=3412 movement=3 change=20[0m
+[0;32mI (188293) SNAKE: IR=3416 movement=3 change=18[0m
+[0;32mI (188693) SNAKE: IR=3433 movement=12 change=5[0m
+[0;32mI (189093) SNAKE: IR=3427 movement=5 change=4[0m
+[0;32mI (189493) SNAKE: IR=3409 movement=19 change=10[0m
+[0;32mI (189893) SNAKE: IR=3412 movement=1 change=1[0m
+[0;32mI (190293) SNAKE: IR=3416 movement=1 change=2[0m
+[0;32mI (190693) SNAKE: IR=3425 movement=5 change=7[0m
+[0;32mI (191093) SNAKE: IR=3424 movement=1 change=3[0m
+[0;32mI (191493) SNAKE: IR=3439 movement=9 change=20[0m
+[0;32mI (191893) SNAKE: IR=3423 movement=20 change=7[0m
+[0;32mI (192293) SNAKE: IR=3431 movement=2 change=7[0m
+[0;32mI (192693) SNAKE: IR=3419 movement=0 change=14[0m
+[0;32mI (193093) SNAKE: IR=3415 movement=5 change=0[0m
+[0;32mI (193493) SNAKE: IR=3417 movement=5 change=7[0m
+[0;32mI (193893) SNAKE: IR=3423 movement=1 change=9[0m
+[0;32mI (194293) SNAKE: IR=3411 movement=6 change=24[0m
+[0;32mI (194693) SNAKE: IR=3414 movement=3 change=22[0m
+[0;32mI (195093) SNAKE: IR=3432 movement=12 change=5[0m
+[0;32mI (195493) SNAKE: IR=3427 movement=6 change=5[0m
+[0;32mI (195893) SNAKE: IR=3409 movement=4 change=14[0m
+[0;32mI (196293) SNAKE: IR=3432 movement=22 change=7[0m
+[0;32mI (196693) SNAKE: IR=3425 movement=1 change=6[0m
+[0;32mI (197093) SNAKE: IR=3396 movement=29 change=12[0m
+[0;32mI (197493) SNAKE: IR=3444 movement=49 change=30[0m
+[0;32mI (197893) SNAKE: IR=3439 movement=5 change=23[0m
+[0;32mI (198293) SNAKE: IR=3428 movement=7 change=2[0m
+[0;32mI (198693) SNAKE: IR=3422 movement=5 change=6[0m
+[0;32mI (199093) SNAKE: IR=3424 movement=0 change=12[0m
+[0;32mI (199493) SNAKE: IR=3427 movement=10 change=3[0m
+[0;32mI (199893) SNAKE: IR=3413 movement=5 change=15[0m
+[0;32mI (200293) SNAKE: IR=3422 movement=2 change=12[0m
+[0;32mI (200693) SNAKE: IR=3410 movement=9 change=25[0m
+[0;32mI (201093) SNAKE: IR=3419 movement=5 change=14[0m
+[0;32mI (201493) SNAKE: IR=3431 movement=13 change=2[0m
+[0;32mI (201893) SNAKE: IR=3407 movement=17 change=12[0m
+[0;32mI (202293) SNAKE: IR=3419 movement=0 change=9[0m
+[0;32mI (202693) SNAKE: IR=3419 movement=8 change=2[0m
+[0;32mI (203093) SNAKE: IR=3465 movement=34 change=45[0m
+[0;32mI (203493) SNAKE: IR=3433 movement=9 change=14[0m
+[0;32mI (203893) SNAKE: IR=3434 movement=10 change=17[0m
+[0;32mI (204293) SNAKE: IR=3426 movement=8 change=6[0m
+[0;32mI (204693) SNAKE: IR=3434 movement=1 change=7[0m
+[0;32mI (205093) SNAKE: IR=3430 movement=2 change=18[0m
+[0;32mI (205493) SNAKE: IR=3419 movement=7 change=3[0m
+[0;32mI (205893) SNAKE: IR=3412 movement=7 change=15[0m
+[0;32mI (206293) SNAKE: IR=3420 movement=7 change=12[0m
+[0;32mI (206693) SNAKE: IR=3415 movement=4 change=18[0m
+[0;32mI (207093) SNAKE: IR=3419 movement=6 change=11[0m
+[0;32mI (207493) SNAKE: IR=3412 movement=5 change=15[0m
+[0;32mI (207893) SNAKE: IR=3429 movement=1 change=2[0m
+[0;32mI (208293) SNAKE: IR=3422 movement=5 change=3[0m
+[0;32mI (208693) SNAKE: IR=3422 movement=8 change=9[0m
+[0;32mI (209093) SNAKE: IR=3428 movement=11 change=12[0m
+[0;32mI (209493) SNAKE: IR=3421 movement=8 change=7[0m
+[0;32mI (209893) SNAKE: IR=3437 movement=9 change=22[0m
+[0;32mI (210293) SNAKE: IR=3425 movement=4 change=16[0m
+[0;32mI (210693) SNAKE: IR=3436 movement=18 change=24[0m
+[0;32mI (211093) SNAKE: IR=3424 movement=6 change=9[0m
+[0;32mI (211493) SNAKE: IR=3421 movement=10 change=4[0m
+[0;32mI (211893) SNAKE: IR=3420 movement=2 change=6[0m
+[0;32mI (212293) SNAKE: IR=3415 movement=7 change=9[0m
+[0;32mI (212693) SNAKE: IR=3419 movement=6 change=17[0m
+[0;32mI (213093) SNAKE: IR=3415 movement=4 change=19[0m
+[0;32mI (213493) SNAKE: IR=3412 movement=4 change=13[0m
+[0;32mI (213893) SNAKE: IR=3434 movement=19 change=4[0m
+[0;32mI (214293) SNAKE: IR=3430 movement=6 change=0[0m
+[0;32mI (214693) SNAKE: IR=3428 movement=4 change=13[0m
+[0;32mI (215093) SNAKE: IR=3430 movement=1 change=9[0m
+[0;32mI (215493) SNAKE: IR=3430 movement=5 change=6[0m
+[0;32mI (215893) SNAKE: IR=3435 movement=5 change=20[0m
+[0;32mI (216293) SNAKE: IR=3426 movement=5 change=15[0m
+[0;32mI (216693) SNAKE: IR=3417 movement=12 change=11[0m
+[0;32mI (217093) SNAKE: IR=3435 movement=11 change=0[0m
+[0;32mI (217493) SNAKE: IR=3427 movement=6 change=1[0m
+[0;32mI (217893) SNAKE: IR=3417 movement=8 change=9[0m
+[0;32mI (218293) SNAKE: IR=3424 movement=2 change=1[0m
+[0;32mI (218693) SNAKE: IR=3420 movement=1 change=12[0m
+[0;32mI (219093) SNAKE: IR=3415 movement=2 change=18[0m
+[0;32mI (219493) SNAKE: IR=3412 movement=2 change=23[0m
+[0;32mI (219893) SNAKE: IR=3408 movement=5 change=20[0m
+[0;32mI (220293) SNAKE: IR=3432 movement=23 change=7[0m
+[0;32mI (220693) SNAKE: IR=3425 movement=5 change=1[0m
+[0;32mI (221093) SNAKE: IR=3424 movement=1 change=4[0m
+[0;32mI (221493) SNAKE: IR=3432 movement=2 change=13[0m
+[0;32mI (221893) SNAKE: IR=3451 movement=21 change=36[0m
+[0;32mI (222293) SNAKE: IR=3434 movement=2 change=9[0m
+[0;32mI (222693) SNAKE: IR=3429 movement=0 change=15[0m
+[0;32mI (223093) SNAKE: IR=3421 movement=5 change=16[0m
+[0;32mI (223493) SNAKE: IR=3426 movement=2 change=2[0m
+[0;32mI (223893) SNAKE: IR=3423 movement=4 change=1[0m
+[0;32mI (224293) SNAKE: IR=3418 movement=11 change=8[0m
+[0;32mI (224693) SNAKE: IR=3415 movement=8 change=19[0m
+[0;32mI (225093) SNAKE: IR=3415 movement=7 change=21[0m
+[0;32mI (225493) SNAKE: IR=3413 movement=3 change=12[0m
+[0;32mI (225893) SNAKE: IR=3413 movement=3 change=9[0m
+[0;32mI (226293) SNAKE: IR=3419 movement=27 change=6[0m
+[0;32mI (226693) SNAKE: IR=3433 movement=17 change=2[0m
+[0;32mI (227093) SNAKE: IR=3418 movement=13 change=20[0m
+[0;32mI (227493) SNAKE: IR=3437 movement=10 change=15[0m
+[0;32mI (227893) SNAKE: IR=3435 movement=5 change=23[0m
+[0;32mI (228293) SNAKE: IR=3428 movement=3 change=17[0m
+[0;32mI (228693) SNAKE: IR=3415 movement=10 change=10[0m
+[0;32mI (229093) SNAKE: IR=3418 movement=6 change=4[0m
+[0;32mI (229493) SNAKE: IR=3423 movement=2 change=7[0m
+[0;32mI (229893) SNAKE: IR=3423 movement=2 change=8[0m
+[0;32mI (230293) SNAKE: IR=3422 movement=6 change=0[0m
+[0;32mI (230693) SNAKE: IR=3418 movement=4 change=17[0m
+[0;32mI (231093) SNAKE: IR=3413 movement=2 change=15[0m
+[0;32mI (231493) SNAKE: IR=3411 movement=2 change=20[0m
+[0;32mI (231893) SNAKE: IR=3411 movement=6 change=17[0m
+[0;32mI (232293) SNAKE: IR=3416 movement=6 change=4[0m
+[0;32mI (232693) SNAKE: IR=3427 movement=1 change=6[0m
+[0;32mI (233093) SNAKE: IR=3426 movement=2 change=3[0m
+[0;32mI (233493) SNAKE: IR=3430 movement=4 change=12[0m
+[0;32mI (233893) SNAKE: IR=3432 movement=1 change=17[0m
+[0;32mI (234293) SNAKE: IR=3434 movement=0 change=20[0m
+[0;32mI (234693) SNAKE: IR=3420 movement=5 change=5[0m
+[0;32mI (235093) SNAKE: IR=3421 movement=2 change=7[0m
+[0;32mI (235493) SNAKE: IR=3430 movement=11 change=6[0m
+[0;32mI (235893) SNAKE: IR=3428 movement=13 change=0[0m
+[0;32mI (236293) SNAKE: IR=3433 movement=11 change=4[0m
+[0;32mI (236693) SNAKE: IR=3414 movement=15 change=13[0m
+[0;32mI (237093) SNAKE: IR=3418 movement=3 change=19[0m
+[0;32mI (237493) SNAKE: IR=3405 movement=9 change=18[0m
+[0;32mI (237893) SNAKE: IR=3412 movement=1 change=9[0m
+[0;32mI (238293) SNAKE: IR=3412 movement=2 change=7[0m
+[0;32mI (238693) SNAKE: IR=3422 movement=2 change=9[0m
+[0;32mI (239093) SNAKE: IR=3431 movement=3 change=2[0m
+[0;32mI (239493) SNAKE: IR=3429 movement=1 change=0[0m
+[0;32mI (239893) SNAKE: IR=3427 movement=3 change=17[0m
+[0;32mI (240293) SNAKE: IR=3426 movement=14 change=10[0m
+[0;32mI (240693) SNAKE: IR=3421 movement=4 change=12[0m
+[0;32mI (241093) SNAKE: IR=3420 movement=0 change=8[0m
+[0;32mI (241493) SNAKE: IR=3418 movement=4 change=4[0m
+[0;32mI (241893) SNAKE: IR=3425 movement=1 change=0[0m
+[0;32mI (242293) SNAKE: IR=3437 movement=13 change=1[0m
+[0;32mI (242693) SNAKE: IR=3421 movement=8 change=3[0m
+[0;32mI (243093) SNAKE: IR=3416 movement=9 change=19[0m
+[0;32mI (243493) SNAKE: IR=3405 movement=11 change=28[0m
+[0;32mI (243893) SNAKE: IR=3407 movement=3 change=10[0m
+[0;32mI (244293) SNAKE: IR=3414 movement=7 change=6[0m
+[0;32mI (244693) SNAKE: IR=3428 movement=10 change=13[0m
+[0;32mI (245093) SNAKE: IR=3428 movement=2 change=11[0m
+[0;32mI (245493) SNAKE: IR=3430 movement=9 change=0[0m
+[0;32mI (245893) SNAKE: IR=3427 movement=8 change=1[0m
+[0;32mI (246293) SNAKE: IR=3428 movement=2 change=16[0m
+[0;32mI (246693) SNAKE: IR=3424 movement=10 change=17[0m
+[0;32mI (247093) SNAKE: IR=3425 movement=2 change=17[0m
+[0;32mI (247493) SNAKE: IR=3418 movement=3 change=3[0m
+[0;32mI (247893) SNAKE: IR=3416 movement=6 change=12[0m
+[0;32mI (248293) SNAKE: IR=3425 movement=1 change=5[0m
+[0;32mI (248693) SNAKE: IR=3432 movement=12 change=7[0m
+[0;32mI (249093) SNAKE: IR=3426 movement=3 change=3[0m
+[0;32mI (249493) SNAKE: IR=3407 movement=19 change=17[0m
+[0;32mI (249893) SNAKE: IR=3404 movement=4 change=25[0m
+[0;32mI (250293) SNAKE: IR=3416 movement=13 change=7[0m
+[0;32mI (250693) SNAKE: IR=3429 movement=14 change=8[0m
+[0;32mI (251093) SNAKE: IR=3432 movement=3 change=14[0m
+[0;32mI (251493) SNAKE: IR=3433 movement=6 change=16[0m
+[0;32mI (251893) SNAKE: IR=3424 movement=12 change=12[0m
+[0;32mI (252293) SNAKE: IR=3419 movement=12 change=10[0m
+[0;32mI (252693) SNAKE: IR=3423 movement=1 change=18[0m
+[0;32mI (253093) SNAKE: IR=3423 movement=5 change=14[0m
+[0;32mI (253493) SNAKE: IR=3419 movement=2 change=1[0m
+[0;32mI (253893) SNAKE: IR=3422 movement=0 change=2[0m
+[0;32mI (254293) SNAKE: IR=3420 movement=6 change=10[0m
+[0;32mI (254693) SNAKE: IR=3417 movement=9 change=13[0m
+[0;32mI (255093) SNAKE: IR=3430 movement=12 change=4[0m
+[0;32mI (255493) SNAKE: IR=3422 movement=6 change=1[0m
+[0;32mI (255893) SNAKE: IR=3401 movement=8 change=19[0m
+[0;32mI (256293) SNAKE: IR=3420 movement=16 change=1[0m
+[0;32mI (256693) SNAKE: IR=3428 movement=9 change=10[0m
+[0;32mI (257093) SNAKE: IR=3430 movement=4 change=14[0m
+[0;32mI (257493) SNAKE: IR=3434 movement=3 change=21[0m
+[0;32mI (257893) SNAKE: IR=3441 movement=8 change=24[0m
+[0;32mI (258293) SNAKE: IR=3425 movement=12 change=8[0m
+[0;32mI (258693) SNAKE: IR=3432 movement=8 change=4[0m
+[0;32mI (259093) SNAKE: IR=3417 movement=8 change=7[0m
+[0;32mI (259493) SNAKE: IR=3421 movement=4 change=0[0m
+[0;32mI (259893) SNAKE: IR=3422 movement=1 change=3[0m
+[0;32mI (260293) SNAKE: IR=3416 movement=5 change=8[0m
+[0;32mI (260693) SNAKE: IR=3418 movement=2 change=13[0m
+[0;32mI (261093) SNAKE: IR=3415 movement=5 change=18[0m
+[0;32mI (261493) SNAKE: IR=3429 movement=12 change=3[0m
+����������������������������������������������������������������nt=23 change=8
+[0;32mI (262293) SNAKE: IR=3420 movement=11 change=2[0m
+[0;32mI (262693) SNAKE: IR=3413 movement=8 change=5[0m
+[0;32mI (263093) SNAKE: IR=3424 movement=1 change=6[0m
+[0;32mI (263493) SNAKE: IR=3436 movement=2 change=26[0m
+[0;32mI (263893) SNAKE: IR=3428 movement=5 change=11[0m
+[0;32mI (264293) SNAKE: IR=3427 movement=7 change=14[0m
+[0;32mI (264693) SNAKE: IR=3433 movement=8 change=6[0m
+[0;32mI (265093) SNAKE: IR=3423 movement=8 change=8[0m
+[0;32mI (265493) SNAKE: IR=3419 movement=8 change=1[0m
+[0;32mI (265893) SNAKE: IR=3414 movement=6 change=10[0m
+[0;32mI (266293) SNAKE: IR=3419 movement=1 change=9[0m
+[0;32mI (266693) SNAKE: IR=3413 movement=1 change=20[0m
+[0;32mI (267093) SNAKE: IR=3414 movement=4 change=9[0m
+[0;32mI (267493) SNAKE: IR=3414 movement=5 change=17[0m
+[0;32mI (267893) SNAKE: IR=3432 movement=4 change=1[0m
+[0;32mI (268293) SNAKE: IR=3414 movement=12 change=9[0m
+[0;32mI (268693) SNAKE: IR=3419 movement=7 change=0[0m
+[0;32mI (269093) SNAKE: IR=3428 movement=2 change=3[0m
+[0;32mI (269493) SNAKE: IR=3425 movement=4 change=10[0m
+[0;32mI (269893) SNAKE: IR=3429 movement=2 change=14[0m
+[0;32mI (270293) SNAKE: IR=3420 movement=6 change=10[0m
+[0;32mI (270693) SNAKE: IR=3432 movement=9 change=11[0m
+[0;32mI (271093) SNAKE: IR=3432 movement=1 change=3[0m
+[0;32mI (271493) SNAKE: IR=3422 movement=2 change=4[0m
+[0;32mI (271893) SNAKE: IR=3413 movement=6 change=6[0m
+[0;32mI (272293) SNAKE: IR=3412 movement=3 change=14[0m
+[0;32mI (272693) SNAKE: IR=3414 movement=1 change=26[0m
+[0;32mI (273093) SNAKE: IR=3410 movement=0 change=19[0m
+[0;32mI (273493) SNAKE: IR=3413 movement=5 change=3[0m
+[0;32mI (273893) SNAKE: IR=3429 movement=24 change=5[0m
+[0;32mI (274293) SNAKE: IR=3418 movement=11 change=11[0m
+[0;32mI (274693) SNAKE: IR=3423 movement=5 change=2[0m
+[0;32mI (275093) SNAKE: IR=3432 movement=3 change=13[0m
+[0;32mI (275493) SNAKE: IR=3435 movement=1 change=16[0m
+[0;32mI (275893) SNAKE: IR=3424 movement=13 change=16[0m
+[0;32mI (276293) SNAKE: IR=3419 movement=2 change=9[0m
+[0;32mI (276693) SNAKE: IR=3427 movement=5 change=11[0m
+[0;32mI (277093) SNAKE: IR=3432 movement=15 change=6[0m
+[0;32mI (277493) SNAKE: IR=3425 movement=6 change=9[0m
+[0;32mI (277893) SNAKE: IR=3419 movement=7 change=12[0m
+[0;32mI (278293) SNAKE: IR=3414 movement=10 change=18[0m
+[0;32mI (278693) SNAKE: IR=3414 movement=2 change=19[0m
+[0;32mI (279093) SNAKE: IR=3409 movement=6 change=23[0m
+[0;32mI (279493) SNAKE: IR=3412 movement=2 change=13[0m
+[0;32mI (279893) SNAKE: IR=3425 movement=18 change=15[0m
+[0;32mI (280293) SNAKE: IR=3429 movement=4 change=11[0m
+[0;32mI (280693) SNAKE: IR=3427 movement=3 change=1[0m
+[0;32mI (281093) SNAKE: IR=3428 movement=7 change=8[0m
+[0;32mI (281493) SNAKE: IR=3430 movement=3 change=24[0m
+[0;32mI (281893) SNAKE: IR=3431 movement=1 change=15[0m
+[0;32mI (282293) SNAKE: IR=3423 movement=3 change=12[0m
+[0;32mI (282693) SNAKE: IR=3423 movement=2 change=6[0m
+[0;32mI (283093) SNAKE: IR=3418 movement=3 change=3[0m
+[0;32mI (283493) SNAKE: IR=3426 movement=0 change=4[0m
+[0;32mI (283893) SNAKE: IR=3430 movement=5 change=9[0m
+[0;32mI (284293) SNAKE: IR=3417 movement=1 change=5[0m
+[0;32mI (284693) SNAKE: IR=3408 movement=9 change=30[0m
+[0;32mI (285093) SNAKE: IR=3417 movement=4 change=3[0m
+[0;32mI (285493) SNAKE: IR=3412 movement=5 change=0[0m
+[0;32mI (285893) SNAKE: IR=3418 movement=12 change=1[0m
+[0;32mI (286293) SNAKE: IR=3418 movement=3 change=3[0m
+[0;32mI (286693) SNAKE: IR=3435 movement=8 change=4[0m
+[0;32mI (287093) SNAKE: IR=3426 movement=3 change=3[0m
+[0;32mI (287493) SNAKE: IR=3425 movement=3 change=8[0m
+[0;32mI (287893) SNAKE: IR=3431 movement=3 change=13[0m
+[0;32mI (288293) SNAKE: IR=3432 movement=4 change=25[0m
+[0;32mI (288693) SNAKE: IR=3421 movement=10 change=15[0m
+[0;32mI (289093) SNAKE: IR=3419 movement=2 change=3[0m
+[0;32mI (289493) SNAKE: IR=3418 movement=0 change=7[0m
+[0;32mI (289893) SNAKE: IR=3426 movement=2 change=0[0m
+[0;32mI (290293) SNAKE: IR=3417 movement=17 change=5[0m
+[0;32mI (290693) SNAKE: IR=3416 movement=2 change=30[0m
+[0;32mI (291093) SNAKE: IR=3411 movement=5 change=11[0m
+[0;32mI (291493) SNAKE: IR=3403 movement=6 change=18[0m
+[0;32mI (291893) SNAKE: IR=3410 movement=2 change=5[0m
+[0;32mI (292293) SNAKE: IR=3421 movement=1 change=1[0m
+[0;32mI (292693) SNAKE: IR=3426 movement=1 change=8[0m
+[0;32mI (293093) SNAKE: IR=3435 movement=3 change=4[0m
+[0;32mI (293493) SNAKE: IR=3426 movement=3 change=10[0m
+[0;32mI (293893) SNAKE: IR=3443 movement=12 change=32[0m
+[0;32mI (294293) SNAKE: IR=3418 movement=3 change=4[0m
+[0;32mI (294693) SNAKE: IR=3421 movement=6 change=8[0m
+[0;32mI (295093) SNAKE: IR=3417 movement=2 change=6[0m
+[0;32mI (295493) SNAKE: IR=3418 movement=3 change=4[0m
+[0;32mI (295893) SNAKE: IR=3423 movement=3 change=12[0m
+[0;32mI (296293) SNAKE: IR=3429 movement=1 change=5[0m
+[0;32mI (296693) SNAKE: IR=3412 movement=12 change=22[0m
+[0;32mI (297093) SNAKE: IR=3407 movement=2 change=24[0m
+[0;32mI (297493) SNAKE: IR=3400 movement=3 change=18[0m
+[0;32mI (297893) SNAKE: IR=3416 movement=5 change=3[0m
+[0;32mI (298293) SNAKE: IR=3419 movement=0 change=9[0m
+[0;32mI (298693) SNAKE: IR=3426 movement=3 change=13[0m
+[0;32mI (299093) SNAKE: IR=3435 movement=4 change=14[0m
+[0;32mI (299493) SNAKE: IR=3425 movement=7 change=6[0m
+[0;32mI (299893) SNAKE: IR=3429 movement=4 change=17[0m
+[0;32mI (300293) SNAKE: IR=3425 movement=3 change=12[0m
+[0;32mI (300693) SNAKE: IR=3417 movement=6 change=8[0m
+[0;32mI (301093) SNAKE: IR=3419 movement=4 change=10[0m
+[0;32mI (301493) SNAKE: IR=3419 movement=4 change=11[0m
+[0;32mI (301893) SNAKE: IR=3417 movement=3 change=12[0m

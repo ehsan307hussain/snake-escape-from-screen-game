@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/home/ehsan/projects/escaping_snake/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

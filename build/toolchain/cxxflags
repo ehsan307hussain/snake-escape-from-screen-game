@@ -1,0 +1,7 @@
+-Wno-frame-address
+-mlongcalls
+-fno-builtin-memcpy
+-fno-builtin-memset
+-fno-builtin-bzero
+"-specs=/home/ehsan/projects/escaping_snake/build/specs/picolibc.specs"
+-fno-rtti

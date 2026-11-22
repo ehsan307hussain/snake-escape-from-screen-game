@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escaping Snake</title>
+
+<style>
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #a8d77b;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+#controls {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    z-index: 2;
+}
+
+button {
+    border: 0;
+    border-radius: 8px;
+    background: #236133;
+    color: white;
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover { background: #328447; }
+
+#score {
+    font-weight: bold;
+    background: #eaf6d8;
+    padding: 10px 13px;
+    border-radius: 8px;
+}
+
+#status {
+    position: fixed;
+    bottom: 14px;
+    left: 14px;
+    z-index: 2;
+    background: #ffffffdf;
+    padding: 12px 15px;
+    border-radius: 8px;
+    max-width: 90vw;
+    font-size: 14px;
+}
+
+#overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #183d2099;
+    z-index: 3;
+}
+
+#panel {
+    background: white;
+    border-radius: 14px;
+    padding: 30px;
+    text-align: center;
+}
+
+#returnMessage {
+    position: fixed;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 5;
+    display: none;
+    pointer-events: none;
+    text-align: center;
+    font-size: clamp(30px, 6vw, 70px);
+    font-weight: 900;
+    color: #245c30;
+    background: #ffffffed;
+    border-radius: 22px;
+    padding: 24px 38px;
+    box-shadow: 0 10px 35px #0002;
+}
+
+#returnMessage.show {
+    display: block;
+    animation: popIn 0.45s ease-out forwards;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="controls">
+    <button id="connect">Connect ESP32</button>
+    <button id="start">Start Game</button>
+    <span id="score">Score: 0</span>
+</div>
+
+<canvas id="game"></canvas>
+
+<div id="status">Connect ESP32 to start</div>
+
+<div id="returnMessage">WOW! Here it is!</div>
+
+<div id="overlay">
+    <div id="panel">
+        <h2>Game Over</h2>
+        <p id="final"></p>
+        <button id="again">Play Again</button>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+const statusEl = document.getElementById('status');
+const connectBtn = document.getElementById('connect');
+const returnMessage = document.getElementById('returnMessage');
+
+// GAME SETTINGS
+const CELL = 40;
+const SPEED = 125;
+
+let cols = 0;
+let rows = 0;
+let ox = 0;
+let oy = 0;
+
+let snake = [];
+let food = null;
+
+let dir = {x: 1, y: 0};
+let next = {x: 1, y: 0};
+
+let score = 0;
+let phase = 'IDLE';
+let timer = null;
+
+// ESP32 SERIAL
+let port = null;
+let reader = null;
+let writer = null;
+let connected = false;
+let session = 0;
+let buffer = '';
+
+// AUDIO
+let audioContext = null;
+let voiceTimer = null;
+let returnMessageTimer = null;
+
+// ----------------------------
+// STATUS AND RESIZE
+// ----------------------------
+
+function status(message) {
+    statusEl.textContent = message;
+}
+
+function resize() {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    cols = Math.max(10, Math.floor(canvas.width / CELL));
+    rows = Math.max(10, Math.floor(canvas.height / CELL));
+
+    ox = (canvas.width - cols * CELL) / 2;
+    oy = (canvas.height - rows * CELL) / 2;
+
+    draw();
+}
+
+// ----------------------------
+// FOOD
+// ----------------------------
+
+function newFood() {
+    const spots = [];
+
+    for (let y = 1; y < rows - 1; y++) {
+        for (let x = 1; x < cols - 1; x++) {
+            if (!snake.some(p => p.x === x && p.y === y)) {
+                spots.push({x, y});
+            }
+        }
+    }
+
+    food = spots.length
+        ? spots[Math.floor(Math.random() * spots.length)]
+        : null;
+}
+
+// ----------------------------
+// START GAME
+// ----------------------------
+
+function start() {
+    clearInterval(timer);
+    hideReturnMessage();
+    cancelVoice();
+
+    initializeAudio();
+
+    snake = [];
+
+    const x = Math.max(5, Math.floor(cols / 3));
+    const y = Math.floor(rows / 2);
+
+    for (let i = 0; i < 5; i++) {
+        snake.push({x: x - i, y});
+    }
+
+    dir = {x: 1, y: 0};
+    next = {x: 1, y: 0};
+
+    score = 0;
+    document.getElementById('score').textContent = 'Score: 0';
+
+    newFood();
+
+    phase = 'PLAY';
+
+    document.getElementById('overlay').style.display = 'none';
+
+    status('Use arrow keys. Escape through the right edge!');
+
+    timer = setInterval(tick, SPEED);
+    draw();
+}
+
+// ----------------------------
+// GAME OVER
+// ----------------------------
+
+function gameOver() {
+    phase = 'OVER';
+    clearInterval(timer);
+
+    document.getElementById('final').textContent =
+        'Score: ' + score;
+
+    document.getElementById('overlay').style.display = 'flex';
+
+    status('Game over');
+}
+
+// ----------------------------
+// GAME MOVEMENT
+// ----------------------------
+
+function tick() {
+    if (phase !== 'PLAY') return;
+
+    if (next.x !== -dir.x || next.y !== -dir.y) {
+        dir = {...next};
+    }
+
+    const head = {
+        x: snake[0].x + dir.x,
+        y: snake[0].y + dir.y
+    };
+
+    if (head.x >= cols) {
+        escape();
+        return;
+    }
+
+    if (head.x < 0 || head.y < 0 || head.y >= rows) {
+        gameOver();
+        return;
+    }
+
+    const eating =
+        food &&
+        head.x === food.x &&
+        head.y === food.y;
+
+    const body = eating ? snake : snake.slice(0, -1);
+
+    if (body.some(p => p.x === head.x && p.y === head.y)) {
+        gameOver();
+        return;
+    }
+
+    snake.unshift(head);
+
+    if (eating) {
+        score++;
+
+        document.getElementById('score').textContent =
+            'Score: ' + score;
+
+        newFood();
+    } else {
+        snake.pop();
+    }
+
+    draw();
+}
+
+// ----------------------------
+// SNAKE ESCAPES
+// ----------------------------
+
+async function escape() {
+    if (phase !== 'PLAY') return;
+
+    if (!connected) {
+        status('Connect ESP32 before escaping to LED strip');
+        return;
+    }
+
+    phase = 'OUTBOUND';
+
+    clearInterval(timer);
+    escapeSound();
+
+    status('Snake escaped!');
+    draw();
+
+    try {
+        await send('GO_LED');
+    } catch (e) {
+        cancelVoice();
+        phase = 'PLAY';
+        status('Send failed: ' + e.message);
+        timer = setInterval(tick, SPEED);
+        draw();
+    }
+}
+
+// ----------------------------
+// SNAKE RETURNS
+// ----------------------------
+
+function returnHome() {
+    const length = Math.min(snake.length || 5, cols);
+    const y = Math.floor(rows / 2);
+
+    snake = [];
+
+    // Head enters from right, facing left.
+    for (let i = 0; i < length; i++) {
+        snake.push({
+            x: cols - length + i,
+            y
+        });
+    }
+
+    dir = {x: -1, y: 0};
+    next = {x: -1, y: 0};
+
+    phase = 'PLAY';
+
+    returnSound();
+    showReturnMessage();
+
+    status('Snake returned!');
+
+    clearInterval(timer);
+    timer = setInterval(tick, SPEED);
+
+    draw();
+}
+
+// ----------------------------
+// DRAW GAME
+// ----------------------------
+
+function draw() {
+    if (!cols || !rows) return;
+
+    ctx.fillStyle = '#aad77c';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Checkerboard
+    for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+            ctx.fillStyle = (x + y) % 2
+                ? '#a0d171'
+                : '#aad77c';
+
+            ctx.fillRect(
+                ox + x * CELL,
+                oy + y * CELL,
+                CELL,
+                CELL
+            );
+        }
+    }
+
+    // Orange food
+    if (food && phase === 'PLAY') {
+        ctx.fillStyle = '#f16c27';
+
+        ctx.beginPath();
+        ctx.arc(
+            ox + (food.x + 0.5) * CELL,
+            oy + (food.y + 0.5) * CELL,
+            CELL * 0.36,
+            0,
+            Math.PI * 2
+        );
+        ctx.fill();
+    }
+
+    if (['PLAY', 'IDLE', 'OVER'].includes(phase)) {
+
+        // Snake body
+        for (let i = snake.length - 1; i >= 0; i--) {
+            const p = snake[i];
+
+            ctx.fillStyle =
+                i === 0 ? '#277b35' : '#3a9d42';
+
+            ctx.beginPath();
+            ctx.roundRect(
+                ox + p.x * CELL + 1,
+                oy + p.y * CELL + 1,
+                CELL - 2,
+                CELL - 2,
+                10
+            );
+            ctx.fill();
+        }
+
+        // Snake eyes
+        if (snake.length) {
+            const h = snake[0];
+
+            const eyes =
+                dir.x === 1
+                ? [[0.7, 0.3], [0.7, 0.7]]
+                : dir.x === -1
+                ? [[0.3, 0.3], [0.3, 0.7]]
+                : dir.y === -1
+                ? [[0.3, 0.3], [0.7, 0.3]]
+                : [[0.3, 0.7], [0.7, 0.7]];
+
+            ctx.fillStyle = 'white';
+
+            for (const e of eyes) {
+                ctx.beginPath();
+                ctx.arc(
+                    ox + (h.x + e[0]) * CELL,
+                    oy + (h.y + e[1]) * CELL,
+                    5,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fill();
+            }
+        }
+
+    } else {
+        drawSearchingEyes();
+    }
+}
+
+// ----------------------------
+// SOUND AND VOICE
+// ----------------------------
+
+function initializeAudio() {
+    try {
+        audioContext ??= new (
+            window.AudioContext || window.webkitAudioContext
+        )();
+
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+    } catch (error) {
+        console.log('Audio unavailable:', error);
+    }
+}
+
+function playTone(frequency, duration, delay = 0, type = 'sine') {
+    if (!audioContext) return;
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    const t = audioContext.currentTime + delay;
+
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, t);
+
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.16, t + 0.02);
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001, t + duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start(t);
+    oscillator.stop(t + duration + 0.02);
+}
+
+function speak(text, pitch = 1, rate = 1) {
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.lang = 'en-US';
+    utterance.pitch = pitch;
+    utterance.rate = rate;
+    utterance.volume = 1;
+
+    window.speechSynthesis.speak(utterance);
+}
+
+function cancelVoice() {
+    clearTimeout(voiceTimer);
+
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+    }
+}
+
+// Surprised sound + spoken question
+// Snake escapes: surprise sound only
+function escapeSound() {
+    initializeAudio();
+    cancelVoice();
+
+    playTone(520, 0.14, 0);
+    playTone(350, 0.22, 0.14);
+}
+
+// Snake returns: celebration sound only
+function returnSound() {
+    initializeAudio();
+    cancelVoice();
+
+    playTone(523, 0.16, 0);
+    playTone(659, 0.16, 0.17);
+    playTone(784, 0.16, 0.34);
+    playTone(1047, 0.45, 0.51);
+}
+// ----------------------------
+// ANIMATED SEARCHING EYES
+// ----------------------------
+
+function drawSearchingEyes() {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2 - 65;
+
+    const scale = Math.min(
+        canvas.width / 900,
+        canvas.height / 650,
+        1.3
+    );
+
+    const time = performance.now() / 1000;
+    const look = Math.sin(time * 2.5) * 13;
+    const blink = Math.sin(time * 1.8) > 0.985;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(scale, scale);
+
+    // Big eyes
+    for (const x of [-80, 80]) {
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = '#245c30';
+        ctx.lineWidth = 6;
+
+        ctx.beginPath();
+        ctx.ellipse(
+            x,
+            0,
+            67,
+            blink ? 5 : 82,
+            0,
+            0,
+            Math.PI * 2
+        );
+        ctx.fill();
+        ctx.stroke();
+
+        if (!blink) {
+            ctx.fillStyle = '#2b6138';
+            ctx.beginPath();
+            ctx.arc(x + look, 8, 27, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#101b13';
+            ctx.beginPath();
+            ctx.arc(x + look, 8, 15, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(x + look - 8, -1, 7, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Worried mouth
+    ctx.strokeStyle = '#245c30';
+    ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
+
+    ctx.beginPath();
+    ctx.arc(0, 115, 18, Math.PI * 1.1, Math.PI * 1.9);
+    ctx.stroke();
+
+    ctx.restore();
+
+    // Message
+    ctx.fillStyle = '#245c30';
+    ctx.textAlign = 'center';
+
+    const fontSize = Math.min(canvas.width * 0.052, 48);
+    ctx.font = `bold ${fontSize}px Arial`;
+
+    ctx.fillText(
+        'Oh! Where is my snake?',
+        cx,
+        cy + 205
+    );
+}
+
+// ----------------------------
+// RETURN CELEBRATION MESSAGE
+// ----------------------------
+
+function showReturnMessage() {
+    clearTimeout(returnMessageTimer);
+
+    returnMessage.classList.remove('show');
+    void returnMessage.offsetWidth;
+    returnMessage.classList.add('show');
+
+    returnMessageTimer = setTimeout(() => {
+        returnMessage.classList.remove('show');
+    }, 1800);
+}
+
+function hideReturnMessage() {
+    clearTimeout(returnMessageTimer);
+    returnMessage.classList.remove('show');
+}
+
+// ----------------------------
+// ESP32 COMMUNICATION
+// ----------------------------
+
+async function send(command) {
+    if (!connected || !writer) {
+        throw Error('ESP32 not connected');
+    }
+
+    await writer.write(
+        new TextEncoder().encode(command + '\n')
+    );
+}
+
+function handle(line) {
+    line = line.trim();
+
+    if (!line) return;
+
+    console.log('ESP32:', line);
+
+    if (line === 'READY') {
+        status('ESP32 ready');
+    }
+    else if (line === 'PONG') {
+        status('ESP32 connected and responding');
+    }
+    else if (line === 'AT_LED') {
+        phase = 'ON_LED';
+        status('Snake is on the LED strip');
+        draw();
+    }
+    else if (line === 'MOTION') {
+        phase = 'INBOUND';
+        status('Movement detected! Snake returning...');
+        draw();
+    }
+    else if (
+        line === 'AT_HOME' &&
+        ['OUTBOUND', 'ON_LED', 'INBOUND'].includes(phase)
+    ) {
+        returnHome();
+    }
+}
+
+async function readLoop(id) {
+    try {
+        while (port?.readable && id === session) {
+            reader = port.readable.getReader();
+
+            try {
+                while (true) {
+                    const {value, done} = await reader.read();
+
+                    if (done) break;
+
+                    buffer += new TextDecoder().decode(value);
+
+                    let idx;
+
+                    while ((idx = buffer.indexOf('\n')) >= 0) {
+                        handle(buffer.slice(0, idx));
+                        buffer = buffer.slice(idx + 1);
+                    }
+                }
+            } finally {
+                reader.releaseLock();
+                reader = null;
+            }
+
+            break;
+        }
+    } catch (e) {
+        if (id === session) {
+            status('ESP32 connection lost: ' + e.message);
+        }
+    } finally {
+        if (id === session) {
+            connected = false;
+            connectBtn.textContent = 'Connect ESP32';
+
+            if (
+                ['OUTBOUND', 'ON_LED', 'INBOUND'].includes(phase)
+            ) {
+                phase = 'IDLE';
+                clearInterval(timer);
+                cancelVoice();
+
+                status('ESP32 disconnected. Reconnect and restart.');
+                draw();
+            }
+
+            if (writer) {
+                try {
+                    writer.releaseLock();
+                } catch (e) {}
+
+                writer = null;
+            }
+
+            if (port) {
+                try {
+                    await port.close();
+                } catch (e) {}
+
+                port = null;
+            }
+        }
+    }
+}
+
+async function connect() {
+    if (!('serial' in navigator)) {
+        status('Use desktop Google Chrome or Chromium');
+        return;
+    }
+
+    if (connected) return;
+
+    try {
+        port = await navigator.serial.requestPort();
+
+        await port.open({baudRate: 115200});
+
+        writer = port.writable.getWriter();
+
+        connected = true;
+        buffer = '';
+        session++;
+
+        connectBtn.textContent = 'ESP32 Connected';
+        status('Connected to ESP32 - 115200 baud');
+
+        readLoop(session);
+
+        await new Promise(r => setTimeout(r, 500));
+
+        if (connected) {
+            await send('PING');
+        }
+    } catch (e) {
+        connected = false;
+        connectBtn.textContent = 'Connect ESP32';
+
+        status('Connection failed: ' + e.message);
+
+        if (writer) {
+            try {
+                writer.releaseLock();
+            } catch (_) {}
+
+            writer = null;
+        }
+
+        if (port) {
+            try {
+                await port.close();
+            } catch (_) {}
+
+            port = null;
+        }
+    }
+}
+
+// ----------------------------
+// KEYBOARD CONTROL
+// ----------------------------
+
+addEventListener('keydown', e => {
+    const keys = {
+        ArrowUp: {x: 0, y: -1},
+        ArrowDown: {x: 0, y: 1},
+        ArrowLeft: {x: -1, y: 0},
+        ArrowRight: {x: 1, y: 0}
+    };
+
+    if (!keys[e.key]) return;
+
+    e.preventDefault();
+
+    if (phase !== 'PLAY') return;
+
+    const d = keys[e.key];
+
+    if (d.x === -dir.x && d.y === -dir.y) {
+        return;
+    }
+
+    next = d;
+});
+
+// ----------------------------
+// BUTTONS
+// ----------------------------
+
+document.getElementById('connect').addEventListener(
+    'click', connect
+);
+
+document.getElementById('start').addEventListener(
+    'click', start
+);
+
+document.getElementById('again').addEventListener(
+    'click', start
+);
+
+// ----------------------------
+// EYE ANIMATION LOOP
+// ----------------------------
+
+function animateEyes() {
+    if (
+        phase === 'OUTBOUND' ||
+        phase === 'ON_LED' ||
+        phase === 'INBOUND'
+    ) {
+        draw();
+    }
+
+    requestAnimationFrame(animateEyes);
+}
+
+addEventListener('resize', resize);
+
+resize();
+animateEyes();
+
+</script>
+</body>
+</html>
